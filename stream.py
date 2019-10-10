@@ -1,12 +1,3 @@
-'''
-        Original by dzhu
-                https://github.com/dzhu/myo-raw
-
-        Edited by Fernando Cosentino
-                http://www.fernandocosentino.net/pyoconnect
-'''
-
-
 from __future__ import print_function
 
 import enum
