@@ -1,4 +1,5 @@
 import dongleless
+import time
 
 def rest(myo):
     print("rest")
@@ -34,9 +35,15 @@ def arm_unsynced(myo):
     print("arm_unsynced")
 
 def imu_data(myo, quat, accel, gyro):
-    print("imu_data:", quat)
+    #print("imu_data:", quat)
+    return
 
-def emg_data(myo, emg):
+def emg_data(myo, emg, times=[]):
+#    times.append(time.time())
+
+#    if len(times) > 20:
+#        print((len(times) - 1) / (times[-1] - times[0]))
+#        times.pop(0)
     print("emg_data:", emg)
 
 
