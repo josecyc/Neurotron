@@ -1,3 +1,4 @@
+# coding: utf-8
 from __future__ import print_function
 from bluepy import btle
 import myo_dicts
@@ -14,6 +15,8 @@ import os
 import csv
 import argparse
 
+
+
 PATH = os.getcwd()
 
 busylog = False #decides whether emg/imu notifications will generate log messages.
@@ -29,14 +32,14 @@ def write_to_csv(emg, args):
         writer.writerow(emg)
 
 '''
-Connection class inherits from Peripheral class and takes the MAC address as an 
-initial argument. It creates a Pheripheral object and when passed a MAC address the 
+Connection class inherits from Peripheral class and takes the MAC address as an
+initial argument. It creates a Pheripheral object and when passed a MAC address the
 constructor establishes a connection to the device indicated by the MAC address.
 
-and calls the writeCharacteristic(handle, val, withResponse=False) 
+and calls the writeCharacteristic(handle, val, withResponse=False)
 method 4 times which makes it subscribe to each set of notifications
-This method writes the data 'val' of type byte in python3 to the characteristic identified by 
-the handle 0x## 
+This method writes the data 'val' of type byte in python3 to the characteristic identified by
+the handle 0x##
 If withResponse is true, will await confirmation that the write was successful from the device.
 '''
 
@@ -57,20 +60,22 @@ class Connection(btle.Peripheral):
 	def vibrate(self, length):
 		self.writeCharacteristic(0x19, struct.pack('<bbb', 0x03, 0x01, length),True)
 
+
+
 '''
-In bluepy, notifications are processed by creating a “delegate” object and registering it with the Peripheral. 
+In bluepy, notifications are processed by creating a delegate object and registering it with the Peripheral.
 A method in the delegate is called whenever a notification is received from the peripheral, as shown below
 
-Normally you will call the peripheral’s waitForNotifications() method to allow this, but note that a 
-Bluetooth LE device may transmit notifications at any time. This means that handleNotification() can 
+Normally you will call the peripherals waitForNotifications method to allow this, but note that a
+Bluetooth LE device may transmit notifications at any time. This means that handleNotification() can
 potentially be called when any BluePy call is in progress.
 
-The cHandle parameter is the GATT ‘handle’ for the characteristic which is sending the notification. 
-If a peripheral sends notifications for more than one characteristic, this may be used to distinguish them. 
+The cHandle parameter is the GATT handle for the characteristic which is sending the notification.
+If a peripheral sends notifications for more than one characteristic, this may be used to distinguish them.
 The ‘handle’ value can be found by calling the getHandle() method of a Characteristic object
 This characteristics are what the Myo is sending
 
-It is recommended you use Python’s struct module to unpack this, to allow portability between language versions.
+It is recommended you use Python struct module to unpack this, to allow portability between language versions.
 '''
 
 class MyoDelegate(btle.DefaultDelegate):
@@ -113,7 +118,7 @@ events = ("rest", "fist", "wave_in", "wave_out", "wave_left", "wave_right",
 '''
 find_myo_mac will execute a subprocess shell command that will scan for low energy
 bluetooth devices for 3 seconds and the will get interrupted if the process continues
-for 0 seconds after the 3 seconds have passed. It will then write all the scans to 
+for 0 seconds after the 3 seconds have passed. It will then write all the scans to
 scan_results.txt
 '''
 
@@ -132,18 +137,18 @@ def find_myo_mac(blacklist):
 	return lis
 
 '''
-Main loop: 
+Main loop:
 1) Scanning for the Myo
 2) Connecting to Myo and logging info when unable to connect
-3) Delegating the established connection to the MyoDelegate() object instance, along with the 
+3) Delegating the established connection to the MyoDelegate() object instance, along with the
 dictionary of functions
 4) Wait for notifications from the Myo device with a 3s timeout, if
 a notification is received the delegate object's handleNotification() method will be called
 and waitForNotifications returns true.
 waitForNotifications(timeout)
 
-Blocks until a notification is received from the peripheral, or until the given timeout (in seconds) 
-has elapsed. If a notification is received, the delegate object’s handleNotification() method will be called, 
+Blocks until a notification is received from the peripheral, or until the given timeout (in seconds)
+has elapsed. If a notification is received, the delegate object’s handleNotification() method will be called,
 and waitForNotifications() will then return True.
 If nothing is received before the timeout elapses, this will return False.
 '''
