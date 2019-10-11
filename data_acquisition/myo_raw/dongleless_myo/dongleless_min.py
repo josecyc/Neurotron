@@ -208,6 +208,5 @@ if __name__=="__main__":
 	parser.add_argument("-name", type=str, help='Enter name of person')
 	parser.add_argument("-nbr", type=int, help="Enter the number of dataset for that person")
 	args = parser.parse_args()
-	
-	run(function_dict, args)
 
+	run(function_dict, args)
