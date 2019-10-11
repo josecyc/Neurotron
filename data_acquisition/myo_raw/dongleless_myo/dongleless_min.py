@@ -14,6 +14,7 @@ import sys
 import os
 import csv
 import argparse
+from add_cols import add_cols
 
 
 
@@ -103,7 +104,8 @@ class MyoDelegate(btle.DefaultDelegate):
 			ev_type = "emg_data"
 			if "emg_data" in self.bindings:
 				self.bindings["emg_data"](self.myo, data[:8])
-			write_to_csv(data[:8], self.args)
+			if "write_to_csv" in self.bindings:
+				self.bindings["write_to_csv"](data[:8], self.args)
 
 def print_wrapper(*args):
 	print(args)
@@ -138,7 +140,7 @@ def find_myo_mac(blacklist):
 
 '''
 Main loop:
-1) Scanning for the Myo
+1) Scanning for Myo
 2) Connecting to Myo and logging info when unable to connect
 3) Delegating the established connection to the MyoDelegate() object instance, along with the
 dictionary of functions
@@ -166,6 +168,7 @@ def run(modes, args):
 				x=find_myo_mac(blacklist)
 				print('x:', x)
 				for mac in x:
+					print('mac:', mac)
 					try:
 						p = Connection( mac ) # Takes a long time if it's not a myo
 						if p:
@@ -201,11 +204,14 @@ def imu_data(myo, quat, accel, gyro):
     return
 
 def emg_data(myo, emg, times=[]):
+	
     print("emg_data:", emg)
 
 function_dict = {
 "imu_data":imu_data,
-"emg_data":emg_data
+"emg_data":emg_data,
+"write_to_csv":write_to_csv
+#"prediction"
 }
 
 if __name__=="__main__":
@@ -215,3 +221,4 @@ if __name__=="__main__":
 	args = parser.parse_args()
 
 	run(function_dict, args)
+	add_cols('emg_data_{}_{}.csv'.format(args.name, args.nbr))
