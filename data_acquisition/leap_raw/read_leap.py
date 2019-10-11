@@ -7,8 +7,7 @@ import pandas as pd
 import argparse
 
 class LeapMotionListener(Leap.Listener):
-	data = np.zeros((7000, 68))
-	i = 0
+	data = []
 	finger_names = ['Thumb', 'Index', 'Middle', 'Ring', 'Pinky'];
 	bone_names = ['Metacarpal', 'Proximal', 'Intermediate', 'Distal']
 	state_names = ['STATE_INVALID', 'STATE_START', 'STATE_UPDATE', 'STATE_END']
@@ -79,7 +78,7 @@ class LeapMotionListener(Leap.Listener):
 				pinky_intermediate_rel = hand.fingers[4].bone(2).prev_joint - hand.palm_position
 				pinky_distal_rel = hand.fingers[4].bone(3).prev_joint - hand.palm_position
 				pinky_tip_rel = hand.fingers[4].bone(3).next_joint - hand.palm_position
-				self.data[self.i] = np.array([time.time(), frame.timestamp,
+				self.data.append(np.array([time.time(), frame.timestamp,
 					hand.palm_position[0], hand.palm_position[1], hand.palm_position[2],
 					wrist_rel[0], wrist_rel[1], wrist_rel[2],
 					thumb_proximal_rel[0], thumb_proximal_rel[1], thumb_proximal_rel[2],
@@ -101,8 +100,7 @@ class LeapMotionListener(Leap.Listener):
 					pinky_proximal_rel[0], pinky_proximal_rel[1], pinky_proximal_rel[2],
 					pinky_intermediate_rel[0], pinky_intermediate_rel[1], pinky_intermediate_rel[2],
 					pinky_distal_rel[0], pinky_distal_rel[1], pinky_distal_rel[2],
-					pinky_tip_rel[0], pinky_tip_rel[1], pinky_tip_rel[2]])
-				self.i += 1
+					pinky_tip_rel[0], pinky_tip_rel[1], pinky_tip_rel[2]]))
 				print(handType)
 				print('palm_position: {}'.format(hand.palm_position))
 				print('fingertips: {} {} {} {} {}'.format(thumb_tip_rel, index_tip_rel, middle_tip_rel, ring_tip_rel, pinky_tip_rel))
