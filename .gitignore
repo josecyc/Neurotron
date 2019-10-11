@@ -1,1 +1,4 @@
 data_acquisition/myo_raw/dongleless_myo/*.pyc
+datasets/emg_data/**
+datasets/leap_data/**
+datasets/emg_leap_data/**

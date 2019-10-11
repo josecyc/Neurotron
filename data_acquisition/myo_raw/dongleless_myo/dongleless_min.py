@@ -12,9 +12,8 @@ import logging as log
 import subprocess
 import sys
 import os
-import csv
 import argparse
-from add_cols import add_cols
+from csv_writer import write_to_csv, add_cols
 
 
 
@@ -23,14 +22,6 @@ PATH = os.getcwd()
 busylog = False #decides whether emg/imu notifications will generate log messages.
 log.basicConfig(filename=PATH+"/dongleless.log", filemode = 'w', level = log.CRITICAL, #change log.CRITICAL to log.DEBUG to get log messages
 				format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%H:%M:%S')
-
-def write_to_csv(emg, args):
-    with open('emg_data_{}_{}.csv'.format(args.name, args.nbr), 'a') as fd:
-        writer = csv.writer(fd)
-        emg = list(emg)
-        emg.insert(0, time.time())
-        #print('emg', emg)
-        writer.writerow(emg)
 
 '''
 Connection class inherits from Peripheral class and takes the MAC address as an
