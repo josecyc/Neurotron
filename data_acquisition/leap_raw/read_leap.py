@@ -4,6 +4,7 @@ import Leap
 from Leap import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 import numpy as np
 import pandas as pd
+import argparse
 
 class LeapMotionListener(Leap.Listener):
 	data = np.zeros((7000, 68))
@@ -106,7 +107,14 @@ class LeapMotionListener(Leap.Listener):
 				print('palm_position: {}'.format(hand.palm_position))
 				print('fingertips: {} {} {} {} {}'.format(thumb_tip_rel, index_tip_rel, middle_tip_rel, ring_tip_rel, pinky_tip_rel))
 
+def parse():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('name')
+	parser.add_argument('nbr')
+	return parser.parse_args()
+
 def main():
+	args = parse()
 	listener = LeapMotionListener()
 	controller = Leap.Controller()
 	controller.add_listener(listener)
@@ -120,7 +128,7 @@ def main():
 		print('Leap - Exiting...')
 		print ("Data dump: {} points".format(len(listener.data)))
 		df = pd.DataFrame(data=listener.data, columns=listener.columns)
-		df.to_csv("test.csv", index=False)
+		df.to_csv("leap_data_{}_{}.csv".format(args.name, args.nbr), index=False)
 		controller.remove_listener(listener)
 
 if __name__ == "__main__":
