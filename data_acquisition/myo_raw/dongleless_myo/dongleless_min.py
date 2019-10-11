@@ -12,9 +12,8 @@ import logging as log
 import subprocess
 import sys
 import os
-import csv
 import argparse
-from add_cols import add_cols
+from csv_writer import write_to_csv, add_cols
 
 
 
