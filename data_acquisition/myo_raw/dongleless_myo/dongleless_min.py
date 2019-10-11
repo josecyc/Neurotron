@@ -36,8 +36,6 @@ class Connection(btle.Peripheral):
 		# self.writeCharacteristic(0x19, struct.pack('<bbbbb', 0,0,0,3,1) ,True ) # Tell the myo we want neither IMU nor classifier data
 		# self.writeCharacteristic(0x24, struct.pack('<bb', 0x00, 0x00),True) # Unsubscribe from classifier indications
 
-		# time.sleep(0.5)
-
 		self.writeCharacteristic(0x24, struct.pack('<bb', 0x02, 0x00),True) # Subscribe to classifier indications
 		self.writeCharacteristic(0x1d, struct.pack('<bb', 0x01, 0x00),True) # Subscribe to imu notifications
 		self.writeCharacteristic(0x28, struct.pack('<bb', 0x01, 0x00),True) # Subscribe to emg notifications
@@ -85,10 +83,8 @@ events = ("rest", "fist", "wave_in", "wave_out", "wave_left", "wave_right",
 
 def find_myo_mac(blacklist):
 	sts = subprocess.Popen("sudo timeout -s SIGINT -k 0 3 sudo hcitool lescan > "+PATH+"/scan_results.txt", shell=True).wait()
-	#timing is a bit weird.
 	with open(PATH+"/scan_results.txt") as res:
 		lines = list(res)
-		#print('lines', lines)
 	lis = []
 	for line in lines:
 		print('line:', line)
@@ -111,7 +107,6 @@ def run(modes):
 				print('WTF')
 				x=find_myo_mac(blacklist)
 				print('x:', x)
-				# print(x)
 				for mac in x:
 					try:
 						p = Connection( mac ) # Takes a long time if it's not a myo
@@ -127,8 +122,6 @@ def run(modes):
 					else:
 						log.info("Found Myo at MAC: %s" % mac)
 			p.setDelegate( MyoDelegate(modes, p))
-
-			# Maybe try starting a new thread instead? *Might* work with multiple myos then.
 
 			log.info("Initialization complete.")
 			while True:
