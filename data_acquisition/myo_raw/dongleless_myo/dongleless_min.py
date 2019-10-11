@@ -12,6 +12,7 @@ import subprocess
 import sys
 import os
 import csv
+import argparse
 
 PATH = os.getcwd()
 
@@ -19,8 +20,8 @@ busylog = False #decides whether emg/imu notifications will generate log message
 log.basicConfig(filename=PATH+"/dongleless.log", filemode = 'w', level = log.CRITICAL, #change log.CRITICAL to log.DEBUG to get log messages
 				format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%H:%M:%S')
 
-def write_to_csv(emg):
-    with open('emg_data_002_jose.csv', 'a') as fd:
+def write_to_csv(emg, args):
+    with open('emg_data_{}_{}.csv'.format(args.name, args.nbr), 'a') as fd:
         writer = csv.writer(fd)
         emg = list(emg)
         emg.insert(0, time.time())
@@ -45,9 +46,10 @@ class Connection(btle.Peripheral):
 		self.writeCharacteristic(0x19, struct.pack('<bbb', 0x03, 0x01, length),True)
 
 class MyoDelegate(btle.DefaultDelegate):
-	def __init__(self, bindings, myo):
+	def __init__(self, bindings, myo, args):
 		self.bindings = bindings #bindings is function dict
 		self.myo = myo
+		self.args = args
 
 	def handleNotification(self, cHandle, data):
 		if cHandle == 0x1c: # IMU
@@ -62,14 +64,13 @@ class MyoDelegate(btle.DefaultDelegate):
 				self.bindings["imu_data"](self.myo, quat, accel, gyro)
 
 		elif cHandle == 0x27: # EMG
-			data = struct.unpack('<8HB', data) # an extra byte for some reason
-			#print('data', data)
+			data = struct.unpack('<8HB', data) # an extra byte for some reason, moving?
 			if busylog:
 				log.debug("got emg notification")
 			ev_type = "emg_data"
 			if "emg_data" in self.bindings:
 				self.bindings["emg_data"](self.myo, data[:8])
-			write_to_csv(data[:8])
+			write_to_csv(data[:8], self.args)
 
 def print_wrapper(*args):
 	print(args)
@@ -95,7 +96,7 @@ def find_myo_mac(blacklist):
 			return lis
 	return lis
 
-def run(modes):
+def run(modes, args):
 # Takes one argument, a dictionary of names of events to functions to be called when they occur.
 	# Main loop --------
 	while True:
@@ -121,7 +122,7 @@ def run(modes):
 						time.sleep(0.5)
 					else:
 						log.info("Found Myo at MAC: %s" % mac)
-			p.setDelegate( MyoDelegate(modes, p))
+			p.setDelegate( MyoDelegate(modes, p, args))
 
 			log.info("Initialization complete.")
 			while True:
@@ -150,6 +151,11 @@ function_dict = {
 "emg_data":emg_data
 }
 
-run(function_dict)
-if '__name__'=='__main__':
-    run(function_dict)
+if __name__=='__main__':
+ 	parser = argparse.ArgumentParser()
+	parser.add_argument("-name", type=str, help='Enter name of person')
+	parser.add_argument("-nbr", type=int, help="Enter the number of dataset for that person")
+	args = parser.parse_args()
+	
+	run(function_dict, args)
+
