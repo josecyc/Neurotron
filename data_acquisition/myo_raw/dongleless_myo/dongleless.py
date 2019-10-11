@@ -110,6 +110,7 @@ class MyoDelegate(btle.DefaultDelegate):
 
 		elif cHandle == 0x27: # EMG
 			data = struct.unpack('<8HB', data) # an extra byte for some reason
+			#print('data', data)
 			if busylog:
 				log.debug("got emg notification")
 			ev_type = "emg_data"
