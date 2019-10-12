@@ -152,7 +152,16 @@ def send_to_godot(raw_preds):
 		MESSAGE = dic_preds
 		sock.sendto(json.dumps(MESSAGE).encode('ascii'), (UDP_IP, UDP_PORT))
 
+def main():
+	listener = LeapMotionListener()
+	controller = Leap.Controller()
+	controller.add_listener(listener)
+	print ("Leap - Press enter to quit")
+	try:
+		sys.stdin.readline()
+	except KeyboardInterrupt:
+		return
 
 if __name__ == "__main__":
-	read_leap.main()    
+	main()    
 	pass
