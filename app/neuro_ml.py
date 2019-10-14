@@ -97,10 +97,10 @@ class NeuroML:
 	def predict(self, data):
 		if not self.has_model:
 			raise RuntimeError("Model has not been defined")
-		self.q.append(np.array(data))
-		if len(self.q > 24):
+		self.q.append(np.array(data, dtype='float64'))
+		if len(self.q) > self.seq_length:
 			self.q.popleft()
-			return self.model.predict(np.array(self.q))
+			return self.model.predict(np.array(self.q).reshape([1, self.seq_length, 8]))
 
 if __name__ == '__main__':
 	import sys
@@ -108,6 +108,7 @@ if __name__ == '__main__':
 	if len(sys.argv) != 2:
 		print('usage: neuro_ml.py joined_training_data')
 		exit()
+	print(tf.__version__)
 	print ('Running Test:')
 	ml = NeuroML()
 	ml.build_model(sys.argv[1], 24)

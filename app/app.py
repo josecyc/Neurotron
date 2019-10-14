@@ -9,13 +9,21 @@
 # ---------------------------------------------------------------------------- #
 
 from myo_core import MyoBT
+from neuro_ml import NeuroML
 
 def handler(myo, emg):
 	for i, data in enumerate(emg):
 		print(f'ch{i}: {data}', end=' ')
 	print('')
 
+def ml_handler(myo, emg):
+	predict = ml.predict(emg)
+	print('q len:', len(ml.q))
+	print(predict)
+
 if __name__ == "__main__":
+	ml = NeuroML()
+	ml.load_model('model.h5')
 	myo = MyoBT()
-	myo.assign_emg_handler(handler)
+	myo.assign_emg_handler(ml_handler)
 	myo.run()
