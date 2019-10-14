@@ -7,16 +7,16 @@ import socket
 
 UDP_IP = '127.0.0.1'
 UDP_PORT = 4242
-sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM
+sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 '''
 Converts predictions to a dictionary that is sent to Godot via a socket
 The Godot program has to be listening?
 '''
 def send_to_godot(raw_preds):
-		preds = raw_preds[0].astype(float)
+		#preds = raw_preds[0].astype(float)
 		#print(type(float(preds[0])))
-		preds = preds / 10
+		preds = raw_preds / 10
 		dic_preds = {
 				'wrist': [preds[0], preds[1], preds[2]],
 				'thumb_p': [preds[3], preds[4], preds[5]],
