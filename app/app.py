@@ -17,5 +17,5 @@ def handler(myo, emg):
 
 if __name__ == "__main__":
 	myo = MyoBT()
-	myo.assign_emu_handler(handler)
+	myo.assign_emg_handler(handler)
 	myo.run()
