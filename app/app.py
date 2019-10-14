@@ -10,6 +10,7 @@
 
 from myo_core import MyoBT
 from neuro_ml import NeuroML
+import os
 
 def handler(myo, emg):
 	for i, data in enumerate(emg):
@@ -18,6 +19,7 @@ def handler(myo, emg):
 
 def ml_handler(myo, emg):
 	predict = ml.predict(emg)
+	os.system('cls' if os.name == 'nt' else 'clear')
 	print('q len:', len(ml.q))
 	print(predict)
 
