@@ -1,3 +1,12 @@
+# ---------------------------------------------------------------------------- #
+#  myo_core.py                                                                 #
+#                                                                              #
+#  By - jacksonwb                                                              #
+#  Created: Sunday October 2019 7:12:37 pm                                     #
+#  Modified: Sunday Oct 2019 7:13:39 pm                                        #
+#  Modified By: jacksonwb                                                      #
+# ---------------------------------------------------------------------------- #
+
 # coding: utf-8
 from __future__ import print_function
 from bluepy import btle
@@ -13,9 +22,7 @@ import subprocess
 import sys
 import os
 import argparse
-from csv_writer import write_to_csv, add_cols
-
-
+from typing import Callable
 
 PATH = os.getcwd()
 
@@ -85,18 +92,16 @@ class MyoDelegate(btle.DefaultDelegate):
 			if busylog:
 				log.debug("got imu notification")
 			ev_type = "imu_data"
-			if "imu_data" in self.bindings:
-				self.bindings["imu_data"](self.myo, quat, accel, gyro)
+			if self.bindings["imu_handler"]:
+				self.bindings["imu_handler"](self.myo, quat, accel, gyro)
 
 		elif cHandle == 0x27: # EMG
 			data = struct.unpack('<8HB', data) # an extra byte for some reason, moving?
 			if busylog:
 				log.debug("got emg notification")
 			ev_type = "emg_data"
-			if "emg_data" in self.bindings:
-				self.bindings["emg_data"](self.myo, data[:8])
-			if "write_to_csv" in self.bindings:
-				self.bindings["write_to_csv"](data[:8], self.args)
+			if self.bindings["emg_handler"]:
+				self.bindings["emg_handler"](self.myo, data[:8])
 
 def print_wrapper(*args):
 	print(args)
@@ -190,26 +195,25 @@ def run(modes, args):
 		#     log.critical("Unexpected error:", sys.exc_info()[0])
 	log.warning("Program stopped")
 
-def imu_data(myo, quat, accel, gyro):
-    #print("imu_data:", quat)
-    return
+"""
+The MyoBT class is used to add data handlers and then find and poll
+against the myo.
+The IMU data handler must be of the following form:
+	fn(myo, quat, accel, gyro)
+The EMG data handler must be of the following form:
+	fn(myo, emg)
+"""
+class MyoBT:
+	def __init__(self):
+		self.function_dict = {
+			"imu_handler":None,
+			"emg_handler":None
+		}
+	def assign_emg_handler(self, fn):
+		self.function_dict['emg_handler'] = fn
 
-def emg_data(myo, emg, times=[]):
-	
-    print("emg_data:", emg)
+	def assign_imu_handler(self, fn):
+		assign_imu_handler['imu_handler'] = fn
 
-function_dict = {
-"imu_data":imu_data,
-"emg_data":emg_data,
-"write_to_csv":write_to_csv
-#"prediction"
-}
-
-if __name__=="__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument("-name", type=str, help='Enter name of person')
-	parser.add_argument("-nbr", type=int, help="Enter the number of dataset for that person")
-	args = parser.parse_args()
-
-	run(function_dict, args)
-	add_cols('emg_data_{}_{}.csv'.format(args.name, args.nbr))
+	def run(self):
+		run(self.function_dict, None)
