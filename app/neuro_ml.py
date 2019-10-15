@@ -94,13 +94,17 @@ class NeuroML:
 		features, labels = overlap_samples(seq_length, feature_ar, label_ar)
 		self.model = build_model_from_data(features, labels)
 		self.has_model = True
+	def predict_sequence(self, sequence):
+		if not self.has_model:
+			raise RuntimeError("Model has not been defined")
+		return self.model.predict(sequence)
 	def predict(self, data):
 		if not self.has_model:
 			raise RuntimeError("Model has not been defined")
 		self.q.append(np.array(data, dtype='float64'))
 		if len(self.q) > self.seq_length:
 			self.q.popleft()
-			return self.model.predict(np.array(self.q).reshape([1, self.seq_length, 8]))
+			return self.model.predict(np.array(self.q).reshape([1, self.seq_length, 8]))[0]
 
 if __name__ == '__main__':
 	import sys
