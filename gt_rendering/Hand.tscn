@@ -70,7 +70,8 @@ albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.0871558, -0.336445, 0.937661, 0, 0.941243, 0.33773, -0.996195, -0.0294351, 0.0820348, 7, 5.40557, 0.67691 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5.406, 0.677 )
+fov = 66.6362
 
 [node name="wrist" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, -0.431435 )
