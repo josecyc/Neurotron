@@ -1,5 +1,5 @@
 import json
-from serial.tools.list_ports import comport
+#from serial.tools.list_ports import comport
 import socket
 # For importing modules outside root
 #import sys
@@ -11,11 +11,13 @@ sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 '''
 Converts predictions to a dictionary that is sent to Godot via a socket
-The Godot program has to be listening?
+The Godot program has to be listening, which is done by running the 
+main scene of the 'project.godot' file
 '''
 def send_to_godot(raw_preds):
-		#preds = raw_preds[0].astype(float)
-		#print(type(float(preds[0])))
+        # reformat raw_preds accordingly
+		# preds = raw_preds[0].astype(float)
+		# print(type(float(preds[0])))
 		preds = raw_preds / 10
 		dic_preds = {
 				'wrist': [preds[0], preds[1], preds[2]],

@@ -1,4 +1,5 @@
 extends Spatial
+extends Label
 
 var socket = PacketPeerUDP.new()
 var status = socket.listen(4242, "127.0.0.1")
@@ -43,3 +44,26 @@ func _process(delta):
 				$pinky_i.translation = Vector3(result["pinky_i"][0], result["pinky_i"][1], result["pinky_i"][2])
 				$pinky_d.translation = Vector3(result["pinky_d"][0], result["pinky_d"][1], result["pinky_d"][2])
 				$pinky_t.translation = Vector3(result["pinky_t"][0], result["pinky_t"][1], result["pinky_t"][2])
+				Engine.get_frames_per_second()    
+
+#extends Label
+
+# Timestamps of frames rendered in the last second
+var times := []
+
+# Frames per second
+var fps := 0
+
+
+func _process(_delta: float) -> void:
+	var now := OS.get_ticks_msec()
+
+	# Remove frames older than 1 second in the `times` array
+	while times.size() > 0 and times[0] <= now - 1000:
+		times.pop_front()
+
+	times.append(now)
+	fps = times.size()
+
+	# Display FPS in the label
+	text = str(fps) + " FPS"
