@@ -14,6 +14,7 @@ import os, time
 import numpy as np
 from collections import deque
 import gt_module
+import argparse
 
 def handler(myo, emg):
 	for i, data in enumerate(emg):
@@ -58,11 +59,17 @@ def latency_test_handler(myo, emg):
 		count = 0
 		q.clear()
 	
+def parse():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--model', '-m')
+	return parser.parse_args()
 
 if __name__ == "__main__":
+	args = parse()
+	model_file = args.model if args.model else 'model.h5'
 	q = deque()
 	ml = NeuroML()
-	ml.load_model('model.h5')
+	ml.load_model(model_file)
 	myo = MyoBT()
-	myo.assign_emg_handler(latency_test_handler)
+	myo.assign_emg_handler(ml_handler)
 	myo.run()
