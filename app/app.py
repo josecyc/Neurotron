@@ -71,5 +71,5 @@ if __name__ == "__main__":
 	ml = NeuroML()
 	ml.load_model(model_file)
 	myo = MyoBT()
-	myo.assign_emg_handler(ml_sequence_handler)
+	myo.assign_emg_handler(ml_handler)
 	myo.run()
