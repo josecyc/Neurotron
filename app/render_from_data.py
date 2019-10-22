@@ -4,9 +4,17 @@ import pandas as pd
 import numpy as np
 import gt_module
 import neuro_ml
+import argparse
 
 def stream():
 	pass
+
+def parse():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('data')
+	parser.add_argument('--predict', '-p', action='store_true')
+	parser.add_argument('--model', '-m')
+	return parser.parse_args()
 
 def preproc(data_set, seq_length=24):
 	df = pd.read_csv(data_set)
@@ -16,14 +24,12 @@ def preproc(data_set, seq_length=24):
 	return features, labels
 
 if __name__ == '__main__':
-	predict = False
-	if len(sys.argv) != 2:
-		print('usage: ./rfd data_set')
-		exit()
-	features, labels = preproc(sys.argv[1])	
-	if predict:
+	args = parse()
+	features, labels = preproc(args.data)	
+	model_file = args.model if args.model else 'model.h5'
+	if args.predict:
 		ml = neuro_ml.NeuroML()
-		ml.load_model('model.h5')
+		ml.load_model(model_file)
 		for datum in features:
 			gt_module.send_to_godot(ml.predict_sequence(datum.reshape([1, 24, 8]))[0])
 	else:
