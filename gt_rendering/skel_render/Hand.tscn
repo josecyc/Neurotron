@@ -1,8 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Hand.gd" type="Script" id=1]
 [ext_resource path="res://Joint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Bone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://x_axis.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Axis_arr.tscn" type="PackedScene" id=5]
+[ext_resource path="res://z_axis.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.294118, 0.74902, 0.133333, 1 )
@@ -75,9 +78,6 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0506932, -0.455715 
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0175629, -0.310695, -0.0105772 )
 material/0 = SubResource( 1 )
 
-[node name="wrist_2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.604037, 2.33781, -5.69101 )
-
 [node name="thumb_p_b" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
 
@@ -89,6 +89,15 @@ material/0 = SubResource( 1 )
 
 [node name="Center" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.974962, -0.376514 )
+
+[node name="x_axis" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43854 )
+
+[node name="y_axis" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43854 )
+
+[node name="z_axis" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398349, -0.492816, -5.92552 )
 
 [node name="thumb_d_b" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )

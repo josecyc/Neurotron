@@ -39,6 +39,13 @@ func _process(delta):
 #				var vec = Vector3(result["a"][0], result["a"][1], result["a"][2])
 #				$Joint.translation = vec
 #				print($Joint.translation)
+				#$Z_axis.Color
+				$z_axis.translation = Vector3(8, 0, 0)
+				$y_axis.translation = Vector3(8, 0, 0)
+				$x_axis.translation = Vector3(8, 0, 0)
+				
+				$Center.translation = Vector3(0, 0, 0)
+				$Center.set_scale(Vector3(1, 1, 1))
 				$wrist.translation = Vector3(result["wrist"][0], result["wrist"][1], result["wrist"][2])
 				
 				#Thumb
