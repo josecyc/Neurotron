@@ -17,49 +17,10 @@ import gt_module
 import argparse
 import multiprocessing
 
-# def handler(myo, emg):
-# 	for i, data in enumerate(emg):
-# 		print(f'ch{i}: {data}', end=' ')
-# 	print('')
-
-# def ml_handler(myo, emg):
-# 	start = time.time()
-# 	predict = ml.predict(emg)
-# 	end = time.time()
-
-# 	os.system('cls' if os.name == 'nt' else 'clear')
-# 	print('predict time: {}'.format(start - end))
-# 	print('q len:', len(ml.q))
-# 	if predict is not None:
-# 		print(predict.shape)
-# 		gt_module.send_to_godot(predict)
-# 	print(predict)
-
-# def ml_sequence_handler(myo, emg):
-# 	q.append(np.array(emg, dtype='float64'))
-# 	print('q len:', len(q))
-# 	if len(q) == 24:
-# 		predict = ml.predict_sequence(np.array(q).reshape([1, 24, 8]))
-# 		print(predict)
-# 		gt_module.send_to_godot(predict[0])
-# 		q.clear()
-
-# count = 0
-# start_t = time.time()
-
-# def latency_test_handler(myo, emg):
-# 	global start_t
-# 	period_t = 1
-# 	q.append(np.array(emg, dtype='float64'))
-# 	global count
-# 	count += 1
-# 	now = time.time()
-# 	if now - start_t > period_t:
-# 		start_t = now
-# 		print('packets this period:', count)
-# 		count = 0
-# 		q.clear()
-
+def handler(myo, emg):
+	for i, data in enumerate(emg):
+		print(f'ch{i}: {data}', end=' ')
+	print('')
 
 def parse():
 	parser = argparse.ArgumentParser()
