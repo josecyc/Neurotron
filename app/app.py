@@ -85,10 +85,12 @@ def consumer(q, model_file):
 	ml = NeuroML()
 	ml.load_model(model_file)
 	while True:
+		now = time.time()
 		data = q.get()
 		predict = ml.predict_sequence(data)
-		print(predict)
 		gt_module.send_to_godot(predict[0])
+		fr = 1 / (time.time() - now)
+		print('framerate:', fr)
 
 if __name__ == "__main__":
 	args = parse()

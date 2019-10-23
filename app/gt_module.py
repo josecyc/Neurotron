@@ -8,7 +8,7 @@ UDP_IP = '127.0.0.1'
 UDP_PORT = 4242
 sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-def send_to_godot(raw_preds):
+def send_to_godot(raw_preds, verbose=False):
 		preds = raw_preds.astype(float)
 		#print(type(float(preds[0])))
 		preds = preds / 10
@@ -36,6 +36,7 @@ def send_to_godot(raw_preds):
 				'pinky_t': [preds[60], preds[61], preds[62]],
 				'exit': 2
 				}
-		print('preds', dic_preds)
+		if verbose:
+			print('preds', dic_preds)
 		MESSAGE = dic_preds
 		sock.sendto(json.dumps(MESSAGE).encode('ascii'), (UDP_IP, UDP_PORT))
