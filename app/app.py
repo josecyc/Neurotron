@@ -25,7 +25,7 @@ def handler(myo, emg):
 def parse():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--model', '-m')
-	parser.add_argument('--seq', '-s', help='model sequence length', type=int, default=24)
+	parser.add_argument('--seq', '-s', help='model sequence length', type=int, default=32)
 	return parser.parse_args()
 
 q_loc = deque()
@@ -58,7 +58,7 @@ if __name__ == "__main__":
 	args = parse()
 	global seq_len
 	seq_len = args.seq
-	model_file = args.model if args.model else 'model.h5'
+	model_file = args.model if args.model else 'default_model.h5'
 	q = multiprocessing.Queue()
 
 	producer = multiprocessing.Process(target=producer, args=(q,))
