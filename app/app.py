@@ -72,4 +72,4 @@ if __name__ == "__main__":
 	producer.start()
 
 	while True:
-		pass	
+		pass

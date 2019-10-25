@@ -3,7 +3,7 @@
 #                                                                              #
 #  By - jacksonwb                                                              #
 #  Created: Sunday October 2019 7:22:07 pm                                     #
-#  Modified: Monday Oct 2019 12:42:21 pm                                       #
+#  Modified: Friday Oct 2019 3:20:48 pm                                        #
 #  Modified By: jacksonwb                                                      #
 # ---------------------------------------------------------------------------- #
 
@@ -62,13 +62,35 @@ class LSTM_Module:
 	def train(self, features, labels, seq_length=24, epochs=4, verbose=1, validation_split=0.2):
 		self.model.fit(features, labels, batch_size=seq_length, epochs=epochs, verbose=verbose, validation_split=validation_split)
 
+class Dense_Module:
+	def __init__(self, seq_length):
+		self.model_fc = tf.keras.models.Sequential()
+		self.model_fc.add(LSTM(256, return_sequences=True, input_shape=(seq_length, 8)))
+		self.model_fc.add(Dropout(0.5))
+		self.model_fc.add(LSTM(256, return_sequences=True))
+		self.model_fc.add(Dropout(0.5))
+		self.model_fc.add(LSTM(128))
+		self.model_fc.add(BatchNormalization())
+		self.model_fc.add(Dense(512, input_dim=128))
+		self.model_fc.add(Activation('relu'))
+		self.model_fc.add(BatchNormalization())
+		self.model_fc.add(Dropout(0.5))
+		self.model_fc.add(Dense(512, input_dim=512))
+		self.model_fc.add(Activation('relu'))
+		self.model_fc.add(BatchNormalization())
+		self.model_fc.add(Dropout(0.5))
+		self.model_fc.add(Dense(256, input_dim=512))
+		self.model_fc.add(Activation('relu'))
+		self.model_fc.add(Dropout(0.3))
+		self.model_fc.add(Dense(63, input_dim=64))
+		self.model_fc.compile(optimizer='Adam', loss='mse')
+	def train(self, features, labels, batch_size=512, epochs=4, verbose=1, validation_split=0.2):
+		self.model_fc.fit(features, labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_split=validation_split)
 
-def build_model_from_data(features, labels):
-	autoencoder = Autoencoder()
-	autoencoder.train(labels)
-	lstm = LSTM_Module(autoencoder)
-	lstm.train(features, labels)
-	return lstm.model
+def build_model_from_data(features, labels, seq_length):
+	dense_model = Dense_Module()
+	dense_model.train(features, labels)
+	return dense_model.model
 
 def overlap_samples(seq_length, feats, labels):
     new_l = labels[seq_length - 1:]
@@ -92,7 +114,7 @@ class NeuroML:
 		feature_ar = df.loc[:, 'ch1':'ch8'].values
 		label_ar = df.loc[:, 'Wrist x':].values
 		features, labels = overlap_samples(seq_length, feature_ar, label_ar)
-		self.model = build_model_from_data(features, labels)
+		self.model = build_model_from_data(features, labels, seq_length)
 		self.has_model = True
 	def predict_sequence(self, sequence):
 		if not self.has_model:
