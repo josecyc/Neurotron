@@ -57,3 +57,43 @@ optional arguments:
  --predict, -p           specifies whether leap or myo data is used
  --model MODEL, -m MODEL
  ```
+
+## Application Components
+This application consists of modules to read myo data through bluetooth, perform ML tasks, and stream to a godot instance. These components are very modular and easy to repurpose.
+
+### ML
+The ML Core can be used to train models from data, load already trained models, make predictions on custom sequences of data, or automatically build sequences from a stream of single data sEMG datum.
+```python
+from src.neuro_ml import NeuroML
+
+ml = NeuroML()
+ml.load_model(model_file)  						# load a saved model
+ml.build_model(joint_data_set, sequence_length) # train a model from data
+
+ml.predict(data)	# push data to the queue and predict at the correct sequence lengths
+ml.predict_sequence(sequence) # predict on a custom formed sequence
+```
+
+### MyoBT
+This modules can be used to maintain a connection to the myo and register handlers to asychronously process myo data as it becomes available.
+
+```python
+from src.myo_core import MyoBT
+
+def handler(myo, emg):
+	do_stuff_with_data(emg)
+	interact_with_myo(myo)
+
+myo = MyoBT()
+myo.assign_emg_handler(handler)
+myo.run()
+```
+
+### Godot
+This module streams data to a godot instance. The `gt_module.py` file can be edited to configure the godot network configuration.
+
+```python
+import src.gt_module as gt_module
+
+gt_module.send_to_godot(data)
+```
