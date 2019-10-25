@@ -5,7 +5,6 @@ Predictions will be done and sent to godot as fast as can be computed, up to 50 
 
 Bluetooth connection is automatically managed and will be reestablished if disconnected.
 
-
 See the gt_rendering folder for more info on the godot instance.
 
 There are two executable applications in this directory. The first is the `app.py` which will perform the full task described above, the second is the render_from_data.py script. This script is given a 'stitched' data file with both the 8 channels of emg data and the leap position and will transmit either the label data or predictions from the emg data to a godot instance. The purpose of this is essentially playback of datasets used for model training.

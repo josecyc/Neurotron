@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # coding: utf-8
 from __future__ import print_function
 from bluepy import btle
@@ -195,7 +196,7 @@ def imu_data(myo, quat, accel, gyro):
     return
 
 def emg_data(myo, emg, times=[]):
-	
+
     print("emg_data:", emg)
 
 function_dict = {
