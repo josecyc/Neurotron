@@ -88,7 +88,7 @@ class Dense_Module:
 		self.model_fc.fit(features, labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_split=validation_split)
 
 def build_model_from_data(features, labels, seq_length):
-	dense_model = Dense_Module()
+	dense_model = Dense_Module(seq_length)
 	dense_model.train(features, labels)
 	return dense_model.model
 
@@ -137,6 +137,6 @@ if __name__ == '__main__':
 	print(tf.__version__)
 	print ('Running Test:')
 	ml = NeuroML()
-	ml.build_model(sys.argv[1], 24)
+	ml.build_model(sys.argv[1], 32)
 	os.environ['HDF5_USE_FILE_LOCKING'] = 'FALSE'    # Required for NFS setup
 	ml.save_model('model.h5')
