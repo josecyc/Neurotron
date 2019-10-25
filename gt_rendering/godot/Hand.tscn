@@ -67,8 +67,12 @@ albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
 [node name="Hand" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.926762, -0.184793, 0.327053, -0.102363, 0.713455, 0.693183, -0.361433, -0.675894, 0.642287, 5.98908, 13.5004, 14.3081 )
+[node name="CameraGimbal" type="Spatial" parent="."]
+
+[node name="InnerGimbal" type="Spatial" parent="CameraGimbal"]
+
+[node name="Camera" type="Camera" parent="CameraGimbal/InnerGimbal"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4 )
 fov = 66.6362
 
 [node name="wrist" parent="." instance=ExtResource( 2 )]

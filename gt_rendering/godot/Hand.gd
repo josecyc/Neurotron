@@ -5,22 +5,62 @@ var socket = PacketPeerUDP.new()
 var status = socket.listen(4242, "127.0.0.1")
 
 func set_bone(origin, target, bone_):
-	#$wrist_b.scale = Vector3($wrist_b.scale.x, $thumb_p.translation.distance_to($wrist.translation), $wrist_b.scale.z)
-	#$wrist_b.translation = $thumb_p.translation + .5*($wrist.translation - $thumb_p.translation)
-	print('scale:', bone_.scale)
-	print('get scale:', bone_.get_scale())
-	#bone_.set_scale(Vector3(bone_.scale.y, 20*target.translation.distance_to(origin.translation), bone_.scale.z))
-	
-	#bone_.set_scale(Vector3(20*target.translation.distance_to(origin.translation), 1, 1))
-	print('scale:', bone_.scale)
 	bone_.translation = target.translation + .5*(origin.translation - target.translation)
-	#print(bone_.get_transform())
 	bone_.look_at(target.translation, Vector3(0,1,0))
 	bone_.set_scale(Vector3(1, 1, target.translation.distance_to(origin.translation)*.5))
-	#bone_.look_at($thumb_p.translation, Vector3(1,0,0))
-	#bone_.look_at($thumb_p.translation, Vector3(0,0,1))
+
+var rotation_speed = PI/2
+
+func get_input_keyboard(delta):
+	# Rotate outer gimbal around y axis
+	var y_rotation = 0
+	if Input.is_action_pressed("cam_right"):
+		y_rotation += 1
+	if Input.is_action_pressed("cam_left"):
+		y_rotation += -1
+	$CameraGimbal.rotate_object_local(Vector3.UP, y_rotation * rotation_speed * delta)
+	# Rotate inner gimbal around local x axis
+	var x_rotation = 0
+	if Input.is_action_pressed("cam_up"):
+		x_rotation += -1
+	if Input.is_action_pressed("cam_down"):
+		x_rotation += 1
+	$"CameraGimbal/InnerGimbal".rotate_object_local(Vector3.RIGHT, x_rotation * rotation_speed * delta)
+	if Input.is_action_pressed("cam_zoom_in"):
+		$"CameraGimbal/InnerGimbal/Camera".set_fov($"CameraGimbal/InnerGimbal/Camera".get_fov() - 10)
+	if Input.is_action_pressed("cam_zoom_out"):
+		$"CameraGimbal/InnerGimbal/Camera".set_fov($"CameraGimbal/InnerGimbal/Camera".get_fov() + 10)
+
+# mouse properties
+var invert_y = false
+var invert_x = false
+var mouse_control = true
+var mouse_sensitivity = 0.005
+
+# zoom settings
+var max_zoom = 3.0
+var min_zoom = 0.4
+var zoom_speed = .1
+var zoom = 1
+
+
+func _unhandled_input(event):
+	if mouse_control:
+		if event.is_action_pressed("cam_zoom_in") or event.is_action_pressed("ui_down"):
+			zoom -= zoom_speed
+		if event.is_action_pressed("cam_zoom_out") or event.is_action_pressed("ui_up"):
+			zoom += zoom_speed
+		#zoom = clamp(zoom, min_zoom, max_zoom)
+		if mouse_control and event is InputEventMouseMotion:
+			if event.relative.x != 0:
+				var dir = 1 if invert_x else -1
+				$CameraGimbal.rotate_object_local(Vector3.UP, dir * event.relative.x * mouse_sensitivity)
+			if event.relative.y != 0:
+				var dir = 1 if invert_y else -1
+				$"CameraGimbal/InnerGimbal".rotate_object_local(Vector3.RIGHT, dir * event.relative.y * mouse_sensitivity)
 
 func _process(delta):
+	
 	if status != OK:
 		print("An error occurred listening on port 4242")
 	if socket.get_available_packet_count() > 0:
@@ -98,48 +138,7 @@ func _process(delta):
 				set_bone($pinky_i, $pinky_d, $pinky_d_b)
 				$pinky_t.translation = Vector3(result["pinky_t"][0], result["pinky_t"][1], result["pinky_t"][2])
 				set_bone($pinky_d, $pinky_t, $pinky_t_b)
-				Engine.get_frames_per_second()    
-
-
-				
-				
-				#$wrist_b.scale = Vector3($wrist_b.scale.x, $thumb_p.translation.distance_to($wrist.translation), $wrist_b.scale.z)
-				#$wrist_b.translation = $thumb_p.translation + .5*($wrist.translation - $thumb_p.translation)
-				#slerp
-				
-				#var t = $wrist_b.get_transform()
-				#var lookDir = $thumb_p.get_transform().origin - t.origin
-				#var rotTransform = t.looking_at(get_transform().origin+lookDir, Vector3(0, 1, 0))
-				#var thisRotation = Quat(rotTransform.basis)
-				#$wrist_b.set_transform(Transform(thisRotation, t.origin))
-				
-				#print($thumb_p.get_transform())
-				
-				#$wrist_b.look_at($thumb_p.translation, Vector3(0,1,0)) 
-				
-				#var t = $Bone.get_transform()
-				#var lookPos = get_node($thumb_p.translation).get_transform().origin
-				
-				#$Bone.rotation = 
-				#rotate($thumd_p.translation)
-#extends Label
-
-# Timestamps of frames rendered in the last second
-#var times := []
-
-# Frames per second
-#var fps := 0
-
-
-#func _process(_delta: float) -> void:
-#	var now := OS.get_ticks_msec()
-
-#	# Remove frames older than 1 second in the `times` array
-#	while times.size() > 0 and times[0] <= now - 1000:
-#		times.pop_front()
-
-#	times.append(now)
-#	fps = times.size()
-
-#	# Display FPS in the label
-#	text = str(fps) + " FPS"
+				print("fps", Engine.get_frames_per_second())
+				if !mouse_control:
+					get_input_keyboard(delta)
+				$CameraGimbal.scale = lerp($CameraGimbal.scale, Vector3(1, 1, 1) * zoom, zoom_speed)
