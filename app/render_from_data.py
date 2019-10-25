@@ -2,8 +2,8 @@
 import sys, time
 import pandas as pd
 import numpy as np
-import gt_module
-import neuro_ml
+import src.gt_module as gt_module
+import src.neuro_ml as neuro_ml
 import argparse
 
 def stream():
@@ -28,11 +28,13 @@ if __name__ == '__main__':
 	features, labels = preproc(args.data)	
 	model_file = args.model if args.model else 'model.h5'
 	if args.predict:
+		print('Streaming predictions to godot...')
 		ml = neuro_ml.NeuroML()
 		ml.load_model(model_file)
 		for datum in features:
 			gt_module.send_to_godot(ml.predict_sequence(datum.reshape([1, 24, 8]))[0])
 	else:
+		print('Streaming label data to godot...')
 		for datum in labels:
 			gt_module.send_to_godot(datum)
 			time.sleep(0.1)
