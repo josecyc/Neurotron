@@ -25,17 +25,18 @@ def handler(myo, emg):
 def parse():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--model', '-m')
+	parser.add_argument('--seq', '-s', help='model sequence length', type=int, default=24)
 	return parser.parse_args()
 
 q_loc = deque()
 
 def producer_handler(myo, emg):
 	q_loc.append(np.array(emg, dtype='float64'))
-	if len(q_loc) > 24:
+	if len(q_loc) > seq_len:
 		q_loc.popleft()
 	print('q len:', q.qsize())
-	if q.qsize() < 2 and len(q_loc) == 24:
-		q.put(np.array(q_loc).reshape([1, 24, 8]))
+	if q.qsize() < 2 and len(q_loc) == seq_len:
+		q.put(np.array(q_loc).reshape([1, seq_len, 8]))
 
 def producer(q):
 	myo = MyoBT()
@@ -55,6 +56,8 @@ def consumer(q, model_file):
 
 if __name__ == "__main__":
 	args = parse()
+	global seq_len
+	seq_len = args.seq
 	model_file = args.model if args.model else 'model.h5'
 	q = multiprocessing.Queue()
 
