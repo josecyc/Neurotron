@@ -8,12 +8,12 @@
 #  Modified By: jacksonwb                                                      #
 # ---------------------------------------------------------------------------- #
 
-from myo_core import MyoBT
-from neuro_ml import NeuroML
+from src.myo_core import MyoBT
+from src.neuro_ml import NeuroML
 import os, time
 import numpy as np
 from collections import deque
-import gt_module
+import src.gt_module as gt_module
 import argparse
 import multiprocessing
 
