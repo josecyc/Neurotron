@@ -40,16 +40,22 @@ var mouse_sensitivity = 0.005
 # zoom settings
 var max_zoom = 3.0
 var min_zoom = 0.4
-var zoom_speed = .1
+var zoom_speed = .09
 var zoom = 1
 
 
 func _unhandled_input(event):
-	if mouse_control:
+	#if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+	#	return
+	
+	if mouse_control: #and event is InputEventMouseMotion:
+		#zoom = 0
 		if event.is_action_pressed("cam_zoom_in") or event.is_action_pressed("ui_down"):
 			zoom -= zoom_speed
+			#$"CameraGimbal/InnerGimbal/Camera".set_fov($"CameraGimbal/InnerGimbal/Camera".get_fov() - zoom_speed)
 		if event.is_action_pressed("cam_zoom_out") or event.is_action_pressed("ui_up"):
 			zoom += zoom_speed
+			#$"CameraGimbal/InnerGimbal/Camera".set_fov($"CameraGimbal/InnerGimbal/Camera".get_fov() - zoom_speed)
 		#zoom = clamp(zoom, min_zoom, max_zoom)
 		if mouse_control and event is InputEventMouseMotion:
 			if event.relative.x != 0:
@@ -142,3 +148,53 @@ func _process(delta):
 				if !mouse_control:
 					get_input_keyboard(delta)
 				$CameraGimbal.scale = lerp($CameraGimbal.scale, Vector3(1, 1, 1) * zoom, zoom_speed)
+				#$CameraGimbal.scale = $CameraGimbal.scale + Vector3(zoom, zoom, zoom)
+				#zoom = 0
+				#if Input.is_action_pressed("ui_down"):
+				#	$Camera.set_fov($Camera.get_fov() + 10)
+				#if Input.is_action_just_pressed("ui_up"):
+				#	$Camera.set_fov($Camera.get_fov() - 10)
+
+
+				
+				
+				#$wrist_b.scale = Vector3($wrist_b.scale.x, $thumb_p.translation.distance_to($wrist.translation), $wrist_b.scale.z)
+				#$wrist_b.translation = $thumb_p.translation + .5*($wrist.translation - $thumb_p.translation)
+				#slerp
+				
+				#var t = $wrist_b.get_transform()
+				#var lookDir = $thumb_p.get_transform().origin - t.origin
+				#var rotTransform = t.looking_at(get_transform().origin+lookDir, Vector3(0, 1, 0))
+				#var thisRotation = Quat(rotTransform.basis)
+				#$wrist_b.set_transform(Transform(thisRotation, t.origin))
+				
+				#print($thumb_p.get_transform())
+				
+				#$wrist_b.look_at($thumb_p.translation, Vector3(0,1,0)) 
+				
+				#var t = $Bone.get_transform()
+				#var lookPos = get_node($thumb_p.translation).get_transform().origin
+				
+				#$Bone.rotation = 
+				#rotate($thumd_p.translation)
+#extends Label
+
+# Timestamps of frames rendered in the last second
+#var times := []
+
+# Frames per second
+#var fps := 0
+
+
+#func _process(_delta: float) -> void:
+#	var now := OS.get_ticks_msec()
+
+#	# Remove frames older than 1 second in the `times` array
+#	while times.size() > 0 and times[0] <= now - 1000:
+#		times.pop_front()
+
+#	times.append(now)
+#	fps = times.size()
+
+#	# Display FPS in the label
+#	text = str(fps) + " FPS"
