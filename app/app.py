@@ -58,7 +58,7 @@ if __name__ == "__main__":
 	args = parse()
 	global seq_len
 	seq_len = args.seq
-	model_file = args.model if args.model else 'default_model.h5'
+	model_file = args.model if args.model else '../models/FC_arch_jackson_all_joints_model.h5'
 	q = multiprocessing.Queue()
 
 	producer = multiprocessing.Process(target=producer, args=(q,))
