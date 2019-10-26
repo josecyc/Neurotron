@@ -83,18 +83,15 @@ It also tracked single finger movement of the ring and middle finger, but was le
 ### Tracking Examples
 Open and closing the hand tracks well:
 
-![Hand Tracking](https://media.giphy.com/media/UTXmXA6Y40PfjlY6Nk/giphy.gif)
-<p>
-<img src="https://media.giphy.com/media/UTXmXA6Y40PfjlY6Nk/giphy.gif", width='400'/>
-</p>
+![Hand Tracking](./img/1.gif)
 
 Movement of the ring finger was the most responsive of the single fingers:
 
-![Ring Finger Tracking](https://media.giphy.com/media/MdvJKiEaxEEtBjCH9l/giphy.gif)
+![Ring Finger Tracking](./img/2.gif)
 
 Movement of the middle finger also showed some responsiveness:
 
-![Middle Finger Tracking](https://media.giphy.com/media/RhHMtIg4kX6BSdkU9Q/giphy.gif)
+![Middle Finger Tracking](./img/3.gif)
 
 The pinky and index finger were significantly less responsive.
 Results were quite sensitive to placement of the Myo armband.
