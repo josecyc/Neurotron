@@ -1,0 +1,14 @@
+# Godot
+
+The rendering aspect of the project is done with the godot game engine
+The prediction data from the model is sent via a UDP IP socket to the godot listener.
+We then proceed to locate each of the joints and render the hand pose estimation
+
+# requirements
+[Godot 3.1] (https://godotengine.org/download/linux)
+
+# usage
+1. open godot
+2. select project folder
+3. press play to run in the upper right corner
+    (if the model is running the prediction will show accordingly)
