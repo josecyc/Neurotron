@@ -1,4 +1,7 @@
-![Neurotron](img/logo.png)
+<p float="left">
+	<img src="img/logo.png", width='400'/>
+</p>
+
 The goal of this project is to use deep learning to build a model that can predict the position of the hand in 21 points from 8 channels of microvoltage data from a surface electromyography device. This data will be collected across bluetooth from a small peripheral, used to generate a prediction of hand position and then rendered on a display.
 
 This model is trained by collecting microvoltage from an arm band peripheral to be used as feature data. Positional data is collected using a Leap camera and used as truthy label data. A model is then trained to correlate this position and emg data to allow predictions of hand position to be made from only emg data.
@@ -82,7 +85,9 @@ Recent Transformers and Self Attention methods could also provide improvements.
 
 ## Project Contributors
 Jose Cruz y Celis
+
 Jackson Beall
+
 Thomas Holzheu
 
 ## Resources
