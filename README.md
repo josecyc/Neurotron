@@ -84,6 +84,9 @@ It also tracked single finger movement of the ring and middle finger, but was le
 Open and closing the hand tracks well:
 
 ![Hand Tracking](https://media.giphy.com/media/UTXmXA6Y40PfjlY6Nk/giphy.gif)
+<p>
+<img src="https://media.giphy.com/media/UTXmXA6Y40PfjlY6Nk/giphy.gif", width='400'/>
+</p>
 
 Movement of the ring finger was the most responsive of the single fingers:
 
