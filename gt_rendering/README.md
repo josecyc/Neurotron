@@ -10,5 +10,5 @@ We then proceed to locate each of the joints and render the hand pose estimation
 # usage
 1. open godot
 2. select project folder
-3. press play to run in the upper right corner
+3. press play to run in the upper right corner<br>
     (if the model is running the prediction will show accordingly)
