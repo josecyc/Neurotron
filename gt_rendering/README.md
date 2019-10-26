@@ -1,8 +1,8 @@
 # Godot
 
-The rendering aspect of the project is done with the godot game engine
-The prediction data from the model is sent via a UDP IP socket to the godot listener.
-We then proceed to locate each of the joints and render the hand pose estimation
+The rendering aspect of the project is done with the godot game engine. <br>
+The prediction data from the model is sent via a UDP IP socket to the godot listener. <br>
+We then proceed to locate each of the joints and render the hand pose estimation. <br>
 
 # requirements
 [Godot 3.1] (https://godotengine.org/download/linux)
