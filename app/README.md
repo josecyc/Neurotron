@@ -74,6 +74,10 @@ ml.predict(data)	# push data to the queue and predict at the correct sequence le
 ml.predict_sequence(sequence) # predict on a custom formed sequence
 ```
 
+The `neuro_ml.py` module can be run directly to train a model from a joined data file.
+
+`./neuro_ml.py joined_data_set.csv`
+
 ### MyoBT
 This modules can be used to maintain a connection to the myo and register handlers to asychronously process myo data as it becomes available.
 
