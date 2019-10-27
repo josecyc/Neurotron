@@ -8,6 +8,8 @@ This model is trained by collecting microvoltage from an arm band peripheral to 
 
 This problem has applications in VR/AR for gaming and productivity in many industries, Computer-Neural interfacing, Next-Gen prosthetics.
 
+![Neurotron](img/cover.png)
+
 ## Hardware
 This project is using a Thalmic Labs Myo EMG armband for microvoltage data and a Leap Motion Controller for label data.
 
@@ -75,10 +77,12 @@ See the [application](./app) for more info on running the app.
 See [gt_rendering](./gt_rendering) for info on starting the Godot server
 
 ## Results
-The below graph illustrates the position error for each of the 63 values across the full 2.5 hour dataset. This model was trained with 5 different 30 minute datasets. Each of these datasets featured a single signature motion. One with movement in only one of each of the 4 different fingers of the hand (thumb is excluded) and one with concurrent movement of all fingers (opening and closing the hand). The model responds very well to simple all finger gestures such as opening and closing the hand.
+The below graph illustrates the average position error for each of the 63 values across the full 2.5 hour dataset. This model was trained with 5 different 30 minute datasets. Each of these datasets featured a single signature motion. One with movement in only one of each of the 4 different fingers of the hand (thumb is excluded) and one with concurrent movement of all fingers (opening and closing the hand). The model responds very well to simple all finger gestures such as opening and closing the hand.
 It also tracked single finger movement of the ring and middle finger, but was less responsive to index and pinky finger movement as is reflected in the chart.
 
 ![finger movement error](./img/error.png)
+
+This model produced a coefficient of determination (r squared value) of `0.91`
 
 ### Tracking Examples
 Open and closing the hand tracks well:
