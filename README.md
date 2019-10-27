@@ -77,7 +77,7 @@ See the [application](./app) for more info on running the app.
 See [gt_rendering](./gt_rendering) for info on starting the Godot server
 
 ## Results
-The below graph illustrates the position error for each of the 63 values across the full 2.5 hour dataset. This model was trained with 5 different 30 minute datasets. Each of these datasets featured a single signature motion. One with movement in only one of each of the 4 different fingers of the hand (thumb is excluded) and one with concurrent movement of all fingers (opening and closing the hand). The model responds very well to simple all finger gestures such as opening and closing the hand.
+The below graph illustrates the average position error for each of the 63 values across the full 2.5 hour dataset. This model was trained with 5 different 30 minute datasets. Each of these datasets featured a single signature motion. One with movement in only one of each of the 4 different fingers of the hand (thumb is excluded) and one with concurrent movement of all fingers (opening and closing the hand). The model responds very well to simple all finger gestures such as opening and closing the hand.
 It also tracked single finger movement of the ring and middle finger, but was less responsive to index and pinky finger movement as is reflected in the chart.
 
 ![finger movement error](./img/error.png)
