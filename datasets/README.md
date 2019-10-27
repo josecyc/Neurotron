@@ -1,5 +1,3 @@
-Datasets can be found in our slack channel
-Folder structure:
-* emg_data folder contains emg datasets
-* leap_data folder contains leap datasets
-* emg_leap_data folder contains combined, cleaned and pruned datsets
+Cleaned datasets for the 2 subjects jackson and jose are hosted [here](https://www.kaggle.com/josecyc/semg-from-forearm-with-depth-position-of-hand)<br>
+They contain sEMG data from the Myo and leap depth data for all 5 fingers movement.<br>
+Each subject produced an individual finger movement dataset of about 30 minutes for every finger and an extra of 30 minutes for all fingers moving together. <br>
