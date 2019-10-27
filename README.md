@@ -96,6 +96,10 @@ Movement of the middle finger also showed some responsiveness:
 The pinky and index finger were significantly less responsive.
 Results were quite sensitive to placement of the Myo armband.
 
+![All finger Tracking](./img/4.gif)
+
+Another subject performing slow collective finger tracking.
+
 ## Future Improvements
 In its current configuration the Myo armband is capable of generating ~50Hz sample rate. Current studies suggest the bulk of neuronal EMG information is found in the 20hz - 500hz range. Our current hypothesis is that increased fidelity could be achieved in the model if EMG readings could be pushed closer to 1000hz to allow unaliased signals in this range to be captured.
 
