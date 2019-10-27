@@ -7,6 +7,7 @@ Combinations of these models would then be joined for use in training the larger
 ## Myo
 This application will connect to a myo and gather 8 channels of sEMG data. Upon SIG-INT interuption of the python script (ctrl-c) all collected data will be saved to a csv.
 
+![Myo EMG](img/myo.jpg)
 ### Requirements
 This has only been tested on debian and ubuntu families of linux.
 * python 3.7 and up
