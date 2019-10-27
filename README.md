@@ -92,19 +92,20 @@ Thomas Holzheu
 
 ## Resources
 
-[An ensemble-based regression approach for continuous estimation of wrist and fingers movements from surface electromyography](https://ieeexplore.ieee.org/document/7590704)
+[[2008 IEEE Engineering in Medicine and Biology Society] Continuous decoding of finger position from surface emg signals for the control of powered prostheses](https://www.ncbi.nlm.nih.gov/pubmed/19162627)
 
-[EMG-based simultaneous and proportional estimation of wrist/hand kinematics in uni-lateral trans-radial amputees](https://jneuroengrehab.biomedcentral.com/track/pdf/10.1186/1743-0003-9-42)
+[[2009 IEEE Conference on Rehabilitation Robotics] Estimation of finger joint angles from sEMG using a recurrent neural network with time-delayed input vectors](https://ieeexplore.ieee.org/document/5209609)
 
-[Estimation of Finger Join Angles from sEMG Using a Neural Network Including Time Delay Factor and Recurrent Structure](http://downloads.hindawi.com/archive/2012/604314.pdf)
+[[2011 ]Estimation of Finger Join Angles from sEMG Using a Neural Network Including Time Delay Factor and Recurrent Structure](http://downloads.hindawi.com/archive/2012/604314.pdf)
 
-[Support vector regression for improved real-time, simultaneous myoelectric control](https://ieeexplore.ieee.org/document/6817581)
+[[2012 NeuroEngineering and Rehabilitation] EMG-based simultaneous and proportional estimation of wrist/hand kinematics in uni-lateral trans-radial amputees](https://jneuroengrehab.biomedcentral.com/track/pdf/10.1186/1743-0003-9-42)
 
-[Continuous and simultaneous estimation of finger kinematics using inputs from an emg-to-muscle activation model](https://jneuroengrehab.biomedcentral.com/articles/10.1186/1743-0003-11-122)
+[[2014 IEEE Transactions on Neural Systems and Rehabilitation Engineering] Support vector regression for improved real-time, simultaneous myoelectric control](https://ieeexplore.ieee.org/document/6817581)
 
-[R. Smith, F. Tenore, D. Huberdeau, R. Cummings, and N. Thakor, “Continuous decoding of finger position from surface emg signals for the control of powered prostheses,” in IEEE Engineering in Medicine and Biology Society (EMBC), Aug. 2008, pp. 197–200.](https://www.ncbi.nlm.nih.gov/pubmed/19162627)
+[[2014 Journal of NeuroEngineering and Rehabilitation] Continuous and simultaneous estimation of finger kinematics using inputs from an emg-to-muscle activation model](https://jneuroengrehab.biomedcentral.com/articles/10.1186/1743-0003-11-122)
 
-[Near Real-Time Data Labeling Using a Depth Sensor for EMG Based Prosthetic Arms](https://arxiv.org/abs/1811.04239)
+[[2016 IEEE] An ensemble-based regression approach for continuous estimation of wrist and fingers movements from surface electromyography](https://ieeexplore.ieee.org/document/7590704)
 
-[Translating sEMG Signals to Continuous Hand Poses using Recurrent Neural Networks](https://ieeexplore.ieee.org/document/8333395)
+[[2018 Intelligent Systems Conference] Near Real-Time Data Labeling Using a Depth Sensor for EMG Based Prosthetic Arms](https://arxiv.org/abs/1811.04239)
 
+[[2018 IEEE EMBS International Conference on Biomedical & Health Informatics] Translating sEMG Signals to Continuous Hand Poses using Recurrent Neural Networks](https://ieeexplore.ieee.org/document/8333395)
