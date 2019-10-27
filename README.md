@@ -8,6 +8,8 @@ This model is trained by collecting microvoltage from an arm band peripheral to 
 
 This problem has applications in VR/AR for gaming and productivity in many industries, Computer-Neural interfacing, Next-Gen prosthetics.
 
+![Neurotron](img/cover.png)
+
 ## Hardware
 This project is using a Thalmic Labs Myo EMG armband for microvoltage data and a Leap Motion Controller for label data.
 
