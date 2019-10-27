@@ -82,6 +82,8 @@ It also tracked single finger movement of the ring and middle finger, but was le
 
 ![finger movement error](./img/error.png)
 
+This model produced a coefficient of determination (r squared value) of `0.91`
+
 ### Tracking Examples
 Open and closing the hand tracks well:
 
