@@ -67,8 +67,12 @@ if __name__ == "__main__":
 	consumer = multiprocessing.Process(target=consumer, args=(q,model_file))
 	consumer.daemon = True
 
+	consumer2 = multiprocessing.Process(target=consumer, args=(q,model_file))
+	consumer2.daemon = True
+
 	print('Starting sub processes...')
 	consumer.start()
+	consumer2.start()
 	producer.start()
 
 	while True:
