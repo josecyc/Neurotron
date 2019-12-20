@@ -104,6 +104,10 @@ Results were quite sensitive to placement of the Myo armband.
 
 Another subject performing slow collective finger tracking.
 
+<iframe src="https://giphy.com/embed/Y0KAHPOfin4rwGUV1Z" width="480" height="140" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Y0KAHPOfin4rwGUV1Z">via GIPHY</a></p>
+
+![Comparison of prediction vs ground truth]
+
 ## Future Improvements
 In its current configuration the Myo armband is capable of generating ~50Hz sample rate. Current studies suggest the bulk of neuronal EMG information is found in the 20hz - 500hz range. Our current hypothesis is that increased fidelity could be achieved in the model if EMG readings could be pushed closer to 1000hz to allow unaliased signals in this range to be captured.
 
