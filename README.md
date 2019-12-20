@@ -106,6 +106,8 @@ Another subject performing slow collective finger tracking.
 
 ![Comparison of prediction vs ground truth](./img/comparison.gif)
 
+<div style="text-align: right"> Ground Truth </div>
+
 **Prediction** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **Ground Truth**
 
 ## Future Improvements
