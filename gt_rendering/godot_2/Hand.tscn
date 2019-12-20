@@ -1,0 +1,321 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Hand.gd" type="Script" id=1]
+[ext_resource path="res://Joint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://x_axis.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Axis_arr.tscn" type="PackedScene" id=5]
+[ext_resource path="res://z_axis.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.294118, 0.74902, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.294118, 0.74902, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.294118, 0.74902, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.756863, 0.32549, 0.0901961, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.756863, 0.32549, 0.0901961, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.756863, 0.32549, 0.0901961, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.756863, 0.32549, 0.0901961, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.564706, 0.141176, 0.8, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.564706, 0.141176, 0.8, 1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.564706, 0.141176, 0.8, 1 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.564706, 0.141176, 0.8, 1 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 1, 0.207843, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 1, 0.207843, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 1, 0.207843, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 1, 0.207843, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.85098, 0.74902, 0.188235, 1 )
+
+[node name="Hand" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CameraGimbal" type="Spatial" parent="."]
+
+[node name="InnerGimbal" type="Spatial" parent="CameraGimbal"]
+
+[node name="Camera" type="Camera" parent="CameraGimbal/InnerGimbal"]
+transform = Transform( 1, 5.96046e-08, 4.47035e-08, -8.9407e-08, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 10 )
+fov = 66.6362
+
+[node name="wrist" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0506932, -0.455715 )
+
+[node name="MeshInstance" parent="wrist" index="0"]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0175629, -0.310695, -0.0105772 )
+material/0 = SubResource( 1 )
+
+[node name="thumb_p_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="thumb_p" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0506932, 0.833366 )
+
+[node name="MeshInstance" parent="thumb_p" index="0"]
+material/0 = SubResource( 1 )
+
+[node name="Center" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.974962, -0.376514 )
+
+[node name="x_axis" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43854 )
+
+[node name="y_axis" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.43854 )
+
+[node name="z_axis" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398349, -0.492816, -5.92552 )
+
+[node name="thumb_d_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="thumb_d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.39088, 2.23681 )
+
+[node name="MeshInstance" parent="thumb_d" index="0"]
+material/0 = SubResource( 2 )
+
+[node name="thumb_i_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="thumb_i" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.445242, 1.91439 )
+
+[node name="MeshInstance" parent="thumb_i" index="0"]
+material/0 = SubResource( 1 )
+
+[node name="thumb_t_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="thumb_t" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.08741, 2.27006 )
+
+[node name="MeshInstance" parent="thumb_t" index="0"]
+material/0 = SubResource( 3 )
+
+[node name="index_p_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="index_p_m_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="index_p" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00462437, 1.6032, 0.747719 )
+
+[node name="MeshInstance" parent="index_p" index="0"]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.00656223, 0.00442076, -0.0081501 )
+material/0 = SubResource( 4 )
+
+[node name="index_i_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="index_i" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00360394, 2.42494, 0.84754 )
+
+[node name="MeshInstance" parent="index_i" index="0"]
+material/0 = SubResource( 5 )
+
+[node name="index_d_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="index_d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0013442, 3.08571, 0.942137 )
+
+[node name="MeshInstance" parent="index_d" index="0"]
+material/0 = SubResource( 6 )
+
+[node name="index_t_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="index_t" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00191975, 3.85218, 0.972097 )
+
+[node name="MeshInstance" parent="index_t" index="0"]
+material/0 = SubResource( 7 )
+
+[node name="middle_p_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="middle_p" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00115916, 1.84636, -0.0187019 )
+
+[node name="MeshInstance" parent="middle_p" index="0"]
+material/0 = SubResource( 8 )
+
+[node name="middle_i_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="middle_i" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0044055, 2.64459, -0.00771093 )
+
+[node name="MeshInstance" parent="middle_i" index="0"]
+material/0 = SubResource( 9 )
+
+[node name="middle_d_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="middle_d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00169802, 3.47585, -7.42078e-05 )
+
+[node name="MeshInstance" parent="middle_d" index="0"]
+material/0 = SubResource( 10 )
+
+[node name="middle_t_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="middle_t" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.22811, 0 )
+
+[node name="MeshInstance" parent="middle_t" index="0"]
+material/0 = SubResource( 11 )
+
+[node name="ring_p_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="ring_p" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00492764, 1.72485, -0.891254 )
+
+[node name="MeshInstance" parent="ring_p" index="0"]
+material/0 = SubResource( 12 )
+
+[node name="ring_i_p" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="ring_i" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.5559, -0.96469 )
+
+[node name="MeshInstance" parent="ring_i" index="0"]
+material/0 = SubResource( 13 )
+
+[node name="ring_d_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="ring_d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3.38209, -0.941268 )
+
+[node name="MeshInstance" parent="ring_d" index="0"]
+material/0 = SubResource( 14 )
+
+[node name="ring_t_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="ring_t" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.19001, -0.875711 )
+
+[node name="MeshInstance" parent="ring_t" index="0"]
+material/0 = SubResource( 15 )
+
+[node name="pinky_p_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="pinky_p" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.014853, 1.38416, -1.69375 )
+
+[node name="MeshInstance" parent="pinky_p" index="0"]
+material/0 = SubResource( 16 )
+
+[node name="pinky_i_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="pinky_i" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.16785, -1.70293 )
+
+[node name="MeshInstance" parent="pinky_i" index="0"]
+material/0 = SubResource( 17 )
+
+[node name="pinky_d_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="pinky_d" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00223303, 2.89519, -1.74095 )
+
+[node name="MeshInstance" parent="pinky_d" index="0"]
+material/0 = SubResource( 18 )
+
+[node name="pinky_t_b" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="pinky_t" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0100079, 3.67937, -1.81147 )
+
+[node name="MeshInstance" parent="pinky_t" index="0"]
+material/0 = SubResource( 19 )
+
+[editable path="wrist"]
+
+[editable path="thumb_p"]
+
+[editable path="thumb_d"]
+
+[editable path="thumb_i"]
+
+[editable path="thumb_t"]
+
+[editable path="index_p"]
+
+[editable path="index_i"]
+
+[editable path="index_d"]
+
+[editable path="index_t"]
+
+[editable path="middle_p"]
+
+[editable path="middle_i"]
+
+[editable path="middle_d"]
+
+[editable path="middle_t"]
+
+[editable path="ring_p"]
+
+[editable path="ring_i"]
+
+[editable path="ring_d"]
+
+[editable path="ring_t"]
+
+[editable path="pinky_p"]
+
+[editable path="pinky_i"]
+
+[editable path="pinky_d"]
+
+[editable path="pinky_t"]

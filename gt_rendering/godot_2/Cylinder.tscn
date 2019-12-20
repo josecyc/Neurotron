@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CylinderMesh" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.401436, -0.915887, 0, 0.915887, 0.401436, -2.7454, 0.957846, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.901265, 0.0866541, 0, -0.433271, 0.180253, 2.10793, 1.70588, -0.330621 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.397314, 0.917683, 0, -0.917683, 0.397314, 0, -0.772054, 1.76146 )
+mesh = SubResource( 2 )
+material/0 = null
