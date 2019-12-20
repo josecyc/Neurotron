@@ -1,4 +1,4 @@
-<p float="left">
+<p float="center">
 	<img src="img/logo.png", width='400'/>
 </p>
 
