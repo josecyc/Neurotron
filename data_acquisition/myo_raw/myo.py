@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
 from __future__ import print_function
-from bluepy import btle
+#from bluepy import btle
 import myo_dicts
 import struct
 import socket

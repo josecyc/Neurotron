@@ -1,5 +1,5 @@
 # Data Acquisition
-This section of the project is dedicated to gathering processing data for use in training of the models. SEMG data is gathered from the myo and the hand point cloud data is gathered from the leap cameras for labeling. A simple utility is provided to join both of these data sets into a single unified file for use in training models. This format is also accepted for visualization and playback  by `render_from_data.py` in the 'app' section.
+This section of the project is dedicated to gathering processing data for use in training of the models. sEMG data is gathered from the myo and the hand point cloud data is gathered from the leap cameras for labeling. A simple utility is provided to join both of these data sets into a single unified file for use in training models. This format is also accepted for visualization, playback and comparison by `render_from_data.py` in the 'app' section.
 
 During the development of the models included with this project data sets were captured in 30 minute periods, with each dataset typically focusing on a simple movement, such as one for movement of the index finger, one for the ring finger, one for all fingers, etc..
 Combinations of these models would then be joined for use in training the larger models.

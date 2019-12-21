@@ -9,7 +9,7 @@
 
 # coding: utf-8
 from __future__ import print_function
-from bluepy import btle
+#from bluepy import btle
 import src.myo_dicts as myo_dicts
 import struct
 import socket
