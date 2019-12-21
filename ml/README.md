@@ -20,7 +20,7 @@ In the second phase of the project, in the spirit of exploring and optimizing mo
 The CONV + LSTM approach constist of transforming signal sequences to spectrograms, we then perform feature extraction with convolutional layers, the extracted features corresponding to every time-step are then given as input to the LSTMs. 
 
 This is an expensive approach, where all our data gets transformed to overlapped sequences images, which turns a 100 MB dataset into a 7 GB dataset, it also adds Xms to the preprocessing so training 
-this can be appreciated in `conv_lstm.ipynb` 
+this can be appreciated in `CNN_LSTM_pipeline.ipynb` 
 
 ### CONV2D_LSTM
 This implementation includes a convolutional layer across every operation of the LSTM. The results of this were, very similar to a simple CONV + LSTM, without much difference.
