@@ -93,67 +93,8 @@ func _process(delta):
 				$Center.translation = Vector3(0, 0, 0)
 				$Center.set_scale(Vector3(1, 1, 1))
 				$wrist.translation = Vector3(result["wrist"][0], result["wrist"][1], result["wrist"][2])
-				#wrist.translation = Vector3(180, 145, 114)
-				# Wrist x Wrist y	Wrist z	Thumb Proximal x	Thumb Proximal y	Thumb Proximal z	Thumb Intermediate x	Thumb Intermediate y	Thumb Intermediate z	Thumb Distal x	Thumb Distal y	Thumb Distal z	Thumb Tip x	Thumb Tip y	Thumb Tip z	Index Proximal x	Index Proximal y	Index Proximal z	Index Intermediate x	Index Intermediate y	Index Intermediate z	Index Distal x	Index Distal y	Index Distal z	Index Tip x	Index Tip y	Index Tip z	Middle Proximal x	Middle Proximal y	Middle Proximal z	Middle Intermediate x	Middle Intermediate y	Middle Intermediate z	Middle Distal x	Middle Distal y	Middle Distal z	Middle Tip x	Middle Tip y	Middle Tip z	Ring Proximal x	Ring Proximal y	Ring Proximal z	Ring Intermediate x	Ring Intermediate y	Ring Intermediate z	Ring Distal x	Ring Distal y	Ring Distal z	Ring Tip x	Ring Tip y	Ring Tip z	Pinky Proximal x	Pinky Proximal y	Pinky Proximal z	Pinky Intermediate x	Pinky Intermediate y	Pinky Intermediate z	Pinky Distal x	Pinky Distal y	Pinky Distal z	Pinky Tip x	Pinky Tip y	Pinky Tip z
-				# 180.0	145.0	114.0	41.0	34.0	39.0	38.0	-16.222775	-10.821655	51.112442	-41.446320	5.541046	45.021866	-30.822292	-3.578186	-2.891983	-24.884518	-4.760986	-36.445724	-20.510139	-6.676880	-59.356911	-1.803734	24.769409	-25.293182	-1.061131	15.109131	-67.148827	-13.311909	2.218811	-83.518501	-26.032270	-8.170868	-88.226471	12.262966	8.239410	-20.978378	3.991390	-2.989441	-67.116997	-16.609951	-15.629395	-82.098488	-33.275021	-24.205261	-83.465790	21.862766	-10.264069	-11.774460	18.092281	-16.441437	-55.864029	-0.725307	-26.286652	-73.650848	-17.423870	-33.776001	-77.413773	26.265743	-29.429932	-3.303253	26.025158	-31.819550	-38.580795	13.345219	-36.070831	-52.852882	-2.334854	-40.533051	-58.450310
 				
-				#Thumb
 				print(result)
-#				$wrist.translation = Vector3(-.9755569, -.7220642, 5.334385)
-#				# Wrist x Wrist y	Wrist z	  ThumbP x	ThbPy	TbPz	TbI x		Thumb I y	Tb In z	Thumb Distal x	Thumb Distal y	Thumb Distal z	Thumb Tip x	Thumb Tip y	Thumb Tip z	Index Proximal x	Index Proximal y	Index Proximal z	Index Intermediate x	Index Intermediate y	Index Intermediate z	Index Distal x	Index Distal y	Index Distal z	Index Tip x	Index Tip y	Index Tip z	Middle Proximal x	Middle Proximal y	Middle Proximal z	Middle Intermediate x	Middle Intermediate y	Middle Intermediate z	Middle Distal x	Middle Distal y	Middle Distal z	Middle Tip x	Middle Tip y	Middle Tip z	Ring Proximal x	Ring Proximal y	Ring Proximal z	Ring Intermediate x	Ring Intermediate y	Ring Intermediate z	Ring Distal x	Ring Distal y	Ring Distal z	Ring Tip x	Ring Tip y	Ring Tip z	Pinky Proximal x	Pinky Proximal y	Pinky Proximal z	Pinky Intermediate x	Pinky Intermediate y	Pinky Intermediate z	Pinky Distal x	Pinky Distal y	Pinky Distal z	Pinky Tip x	Pinky Tip y	Pinky Tip z
-#				# 180.0	145.0	114.0	41.0	34.0	39.0	38.0	-16.222775	-10.821655	51.112442	-41.446320	5.541046	45.021866	-30.822292	-3.578186	-2.891983	-24.884518	-4.760986	-36.445724	-20.510139	-6.676880	-59.356911	-1.803734	24.769409	-25.293182	-1.061131	15.109131	-67.148827	-13.311909	2.218811	-83.518501	-26.032270	-8.170868	-88.226471	12.262966	8.239410	-20.978378	3.991390	-2.989441	-67.116997	-16.609951	-15.629395	-82.098488	-33.275021	-24.205261	-83.465790	21.862766	-10.264069	-11.774460	18.092281	-16.441437	-55.864029	-0.725307	-26.286652	-73.650848	-17.423870	-33.776001	-77.413773	26.265743	-29.429932	-3.303253	26.025158	-31.819550	-38.580795	13.345219	-36.070831	-52.852882	-2.334854	-40.533051	-58.450310
-#
-#				#Thumb
-#				$thumb_p.translation = Vector3(-3.728662, -1.813623, 4.5345932)
-#				set_bone($wrist, $thumb_p, $thumb_p_b)
-#				$thumb_i.translation = Vector3(-5.0250519, -2.86, -.1709122)
-#				set_bone($thumb_p, $thumb_i, $thumb_i_b)
-#				$thumb_d.translation = Vector3(-6.0046532, -3.53761, -3.3656815)
-#				set_bone($thumb_i, $thumb_d, $thumb_d_b)
-#				$thumb_t.translation = Vector3(-6.9726318, -3.87619, -5.4694092)
-#				set_bone($thumb_d, $thumb_t, $thumb_t_b)
-#
-#				#Index finger
-#				$index_p.translation = Vector3(-1.6121155, .7682617, -3.0620377)
-#				set_bone($thumb_p, $index_p, $index_p_b)
-#				set_bone($index_p, $middle_p, $index_p_m_b)
-#				$index_i.translation = Vector3(-.6885597, .7682617 + result["index_i"][0]/10, -6.6267555)
-#				set_bone($index_p, $index_i, $index_i_b)
-#				$index_d.translation = Vector3(-.0739616, .7682617 + result["index_i"][0]/10 + result["index_d"][0]/10, -8.8676453)
-#				set_bone($index_i, $index_d, $index_d_b)
-#				$index_t.translation = Vector3(.1748932, result["index_i"][0]/10 + result["index_d"][0]/10 + result["index_t"][0]/10, -9.7012276)
-#				set_bone($index_d, $index_t, $index_t_b)
-#
-#				#Middle finger
-#				$middle_p.translation = Vector3(.4698418, .95383, -2.3351791)
-#				set_bone($middle_p, $ring_p, $middle_p_b)
-#				$middle_i.translation = Vector3(2.3503990, result["middle_i"][0]/10, -6.69716)
-#				set_bone($middle_p, $middle_i, $middle_i_b)
-#				$middle_d.translation = Vector3(3.4258446, result["middle_d"][0]/10, -9.3230553)
-#				set_bone($middle_i, $middle_d, $middle_d_b)
-#				$middle_t.translation = Vector3(4.1111595, result["middle_t"][0]/10, -11.0718033)
-#				set_bone($middle_d, $middle_t, $middle_t_b)
-#
-#				#Ring finger
-#				$ring_p.translation = Vector3(2.3438988, .790567, -1.0492081)
-#				set_bone($ring_p, $pinky_p, $ring_p_b)
-#				$ring_i.translation = Vector3(4.5614174, result["ring_i"][0]/10, -4.6548714)
-#				set_bone($ring_p, $ring_i, $ring_i_p)
-#				$ring_d.translation = Vector3(5.40009056, result["ring_d"][0]/10, -6.9904091)
-#				set_bone($ring_i, $ring_d, $ring_d_b)
-#				$ring_t.translation = Vector3(5.3481651, result["ring_t"][0]/10, -7.8062248)
-#				set_bone($ring_d, $ring_t, $ring_t_b)
-#
-#				#Pinky finger
-#				$pinky_p.translation = Vector3(3.94815, .1723999, .2271194)
-#				set_bone($wrist, $pinky_p, $pinky_p_b)
-#				$pinky_i.translation = Vector3(6.3037651, result["pinky_i"][0]/10, -2.1405045)
-#				set_bone($pinky_p, $pinky_i, $pinky_i_b)
-#				$pinky_d.translation = Vector3(6.9958107, result["pinky_d"][0]/10, -3.7507919)
-#				set_bone($pinky_i, $pinky_d, $pinky_d_b)
-#				$pinky_t.translation = Vector3(6.7481941, result["pinky_t"][0]/10, -4.5497078)
-#				set_bone($pinky_d, $pinky_t, $pinky_t_b)
-				
 				$thumb_p.translation = Vector3(result["thumb_p"][0], result["thumb_p"][1], result["thumb_p"][2]) # fixed
 				set_bone($wrist, $thumb_p, $thumb_p_b)
 				$thumb_i.translation = Vector3(result["thumb_i"][0], result["thumb_i"][1], result["thumb_i"][2])
