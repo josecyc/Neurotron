@@ -92,7 +92,7 @@ hand_dist = {
 	'Pinky d t': 11.448140091060699
 }
 
-def angles_to_coords(angle_row, hand_ds):#, label_row):
+def angles_to_coords(angle_row, hand_ds):
     ls_row = []
     for i, key in zip(range(12), hand_ds):
         
@@ -104,9 +104,9 @@ def angles_to_coords(angle_row, hand_ds):#, label_row):
 
     return ls_row
 
-def send_to_godot_angles(raw_preds, verbose=False):#, label):
+def send_to_godot_angles(raw_preds, verbose=False):
 		preds = raw_preds.astype(float)
-		preds = angles_to_coords(preds, hand_dist) #, label_row)
+		preds = angles_to_coords(preds, hand_dist)
 		preds = np.array(preds) / 10
 		dic_preds = {
 				'index_i': [preds[0]],

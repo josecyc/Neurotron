@@ -27,8 +27,6 @@ def preproc(data_set, seq_length=240):
 	return features, labels
 
 def coords_to_angles_row(labels):
-    #print('angles:\n', angles.shape)
-    #print(len(labels))
     ls_row = []
     for j in range(3):
         for i in range(0, 12, 3):
@@ -50,7 +48,7 @@ if __name__ == '__main__':
 	args = parse()
 	features, labels = preproc(args.data, args.seq)	
 	model_file = args.model if args.model else 'model.h5'
-	print('\nmodel:', model_file, '\nargs seq', args.seq)
+	print('\nmodel: {}\nsequence: {}\n'.format(model_file, args.seq))
 	if args.predict:
 		print('Streaming predictions to godot...')
 		ml = neuro_ml.NeuroML()
