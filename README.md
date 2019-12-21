@@ -1,4 +1,4 @@
-<p float="left">
+<p float="center">
 	<img src="img/logo.png", width='400'/>
 </p>
 
@@ -77,6 +77,12 @@ See the [application](./app) for more info on running the app.
 See [gt_rendering](./gt_rendering) for info on starting the Godot server
 
 ## Results
+### Prediction vs ground truth
+The following gif is showing a sample of our model's predictions vs the ground truth annotations of a 30 min dataset containing movements from all fingers.
+
+![Comparison of prediction vs ground truth](./img/comparison.gif)
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **Prediction** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **Ground Truth**
+
 The below graph illustrates the average position error for each of the 63 values across the full 2.5 hour dataset. This model was trained with 5 different 30 minute datasets. Each of these datasets featured a single signature motion. One with movement in only one of each of the 4 different fingers of the hand (thumb is excluded) and one with concurrent movement of all fingers (opening and closing the hand). The model responds very well to simple all finger gestures such as opening and closing the hand.
 It also tracked single finger movement of the ring and middle finger, but was less responsive to index and pinky finger movement as is reflected in the chart.
 
@@ -107,9 +113,7 @@ Another subject performing slow collective finger tracking.
 ## Future Improvements
 In its current configuration the Myo armband is capable of generating ~50Hz sample rate. Current studies suggest the bulk of neuronal EMG information is found in the 20hz - 500hz range. Our current hypothesis is that increased fidelity could be achieved in the model if EMG readings could be pushed closer to 1000hz to allow unaliased signals in this range to be captured.
 
-Additionally we would like to explore using convolutions on the LSTM output to create a deeper more effective correlation layer.
-
-Recent Transformers and Self Attention methods could also provide improvements.
+We have found that our model tends to shift the whole prediction mass towards an outlier position. What this equates is being unable to capture correctly when a single finger is moved, the model does this because it predicts a lower probability of lower overall loss if it shifts the whole prediction mass than if it predicts a singular finger. An approach to deal with this data imbalance in regression problems should be explored.
 
 ## Project Contributors
 Jose Cruz y Celis
